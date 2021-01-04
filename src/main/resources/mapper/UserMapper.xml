@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iflytek.mapper.UserMapper">
+
+    <select id="queryUser" parameterType="com.iflytek.pojo.User" resultType="com.iflytek.pojo.User">
+        select id,
+        username,
+        email,
+        phone,
+        gender
+        from user_tb
+        <where>
+            <if test="userName!=null and userName!=''">
+                and username = #{userName}
+            </if>
+            <if test="password!=null and password!=''">
+                and password = #{password}
+            </if>
+            <if test="id!=null and id!=0">
+                and id = #{id}
+            </if>
+            <if test="email!=null and email!=0">
+                and email = #{email}
+            </if>
+            <if test="phone!=null and phone!=''">
+                and phone = #{phone}
+            </if>
+        </where>
+    </select>
+
+    <select id="list" resultType="com.iflytek.pojo.User">
+        select id,
+               username,
+               email,
+               phone,
+               gender
+        from user_tb
+    </select>
+
+</mapper>
